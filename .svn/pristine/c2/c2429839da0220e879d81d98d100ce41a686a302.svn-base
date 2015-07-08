@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset=utf-8 />
+	<title>yadcf - Yet Another DataTables Column Filter</title>
+	  
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	<link href="resources/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"></link>
+	<link href="resources/css/jquery-ui.1.9.0.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/jquery.dataTables.yadcf.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+	
+	<script src="resources/js/jquery-1.8.2.min.js"></script>
+	<script src="resources/js/jquery-ui.1.9.0.js"></script>
+	<script src="resources/js/jquery.dataTables.full.js"></script>
+	<script src="resources/js/jquery.dataTables.yadcf.js"></script>
+	<script src="resources/js/multiple_tables_class_shared_object_ref_issue.js"></script>
+	
+	<style>
+		.label {
+			padding: 0px 10px 0px 10px;
+			border: 1px solid #ccc;
+			-moz-border-radius: 1em; /* for mozilla-based browsers */
+			-webkit-border-radius: 1em; /* for webkit-based browsers */
+			border-radius: 1em; /* theoretically for *all* browsers*/
+		}
+		
+		.label.lightblue {
+			background-color: #99CCFF;
+		}
+		
+	
+	</style>
+</head>
+ <body>
+	<a href="https://github.com/vedmack/yadcf" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+	<div id="git_buttons">
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=watch&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30" style="vertical-align: middle"></iframe>
+			
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=fork&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30" style="vertical-align: middle"></iframe>
+			
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=follow&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="190" height="30" style="vertical-align: middle"></iframe>				
+		
+	</div>			 	
+   	<div id="container_wrapper">
+   	 	<h1>Yet Another DataTables Column Filter - (yadcf) Multiple tables example</h1>
+  		<div id="container">
+	      <br><br>
+	      <div id="table_2">
+	      	<table cellpadding="0" cellspacing="0" border="0" class="display second_third" id="example2">
+		        <thead>
+		          <tr>
+		            <th>Some Data</th>
+		            <th>More Data</th>
+		            <th>Yes / No</th>
+		            <th>Values</th>
+		            <th>Tags</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr class="odd gradeX">
+		            <td>Some Data 1</td>
+		            <td>More Data 11</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="even gradeC">
+		            <td>Some Data 2</td>
+		            <td>More Data 22</td>
+		            <td>No</td>
+		            <td>b_value,c_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+		          </tr>
+		          <tr class="odd gradeA">
+		            <td>Some Data 3</td>
+		            <td>More Data 33</td>
+		            <td>Yes</td>
+		            <td>a_value</td>
+		            <td><span class="label lightblue">Tag2</span><span class="label lightblue">Tag3</span></td>
+		          </tr>
+		          <tr class="even gradeA">
+		            <td>Some Data 4</td>
+		            <td>More Data 44</td>
+		            <td>No</td>
+		            <td>b_value</td>
+		            <td><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="odd gradeA">
+		            <td>Some Data 5</td>
+		            <td>More Data 55</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="even gradeA">
+		            <td>Some Data 1</td>
+		            <td>More Data 11</td>
+		            <td>No</td>
+		            <td>c_value,d_value</td>
+		            <td><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 2</td>
+		            <td>More Data 22</td>
+		            <td>Yes</td>
+		            <td>e_value,f_value</td>
+		            <td><span class="label lightblue">Tag3</span><span class="label lightblue">Tag4</span><span class="label lightblue">Tag5</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 3</td>
+		            <td>More Data 33</td>
+		            <td>No</td>
+		            <td>a_value,bb_value</td>
+		            <td><span class="label lightblue">Tag5</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 4</td>
+		            <td>More Data 44</td>
+		            <td>Yes</td>
+		            <td>a_value,f_value</td>
+		            <td><span class="label lightblue">Tag4</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 5</td>
+		            <td>More Data 55</td>
+		            <td>No</td>
+		            <td>a_value,c_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 1</td>
+		            <td>More Data 11</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 2</td>
+		            <td>More Data 22</td>
+		            <td>No</td>
+		            <td>d_value,aa_value</td>
+		            <td><span class="label lightblue">Tag1</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 3</td>
+		            <td>More Data 33</td>
+		            <td>Yes</td>
+		            <td>a_value,c_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 4</td>
+		            <td>More Data 44</td>
+		            <td>No</td>
+		            <td>a_value,bb_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 5</td>
+		            <td>More Data 55</td>
+		            <td>Yes</td>
+		            <td>c_value,e_value</td>
+		            <td><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 1</td>
+		            <td>More Data 11</td>
+		            <td>No</td>
+		            <td>a_value,e_value</td>
+		            <td><span class="label lightblue">Tag1</span></td>
+		          </tr>
+		        </tbody>
+		      </table>
+	      	</div>
+			<br><br>
+	      	<div id="table_3">
+	      		<table cellpadding="0" cellspacing="0" border="0" class="display second_third" id="example3">
+			        <thead>
+			          <tr>
+			            <th>Some Data</th>
+			            <th>More Data</th>
+			            <th>Yes / No</th>
+			            <th>Values</th>
+			            <th>Tags</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr class="odd gradeX">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>Yes</td>
+			            <td>a_value,b_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="even gradeC">
+			            <td>Some Data b</td>
+			            <td>More Data bb</td>
+			            <td>No</td>
+			            <td>b_value,c_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagc</span></td>
+			          </tr>
+			          <tr class="odd gradeA">
+			            <td>Some Data c</td>
+			            <td>More Data cc</td>
+			            <td>Yes</td>
+			            <td>a_value</td>
+			            <td><span class="label lightblue">Tagb</span><span class="label lightblue">Tagc</span></td>
+			          </tr>
+			          <tr class="even gradeA">
+			            <td>Some Data d</td>
+			            <td>More Data dd</td>
+			            <td>No</td>
+			            <td>b_value</td>
+			            <td><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="odd gradeA">
+			            <td>Some Data e</td>
+			            <td>More Data ee</td>
+			            <td>Yes</td>
+			            <td>a_value,b_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="even gradeA">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>No</td>
+			            <td>c_value,d_value</td>
+			            <td><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data b</td>
+			            <td>More Data bb</td>
+			            <td>Yes</td>
+			            <td>e_value,f_value</td>
+			            <td><span class="label lightblue">Tagc</span><span class="label lightblue">Tagd</span><span class="label lightblue">Tage</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data c</td>
+			            <td>More Data cc</td>
+			            <td>No</td>
+			            <td>a_value,bb_value</td>
+			            <td><span class="label lightblue">Tage</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data d</td>
+			            <td>More Data dd</td>
+			            <td>Yes</td>
+			            <td>a_value,f_value</td>
+			            <td><span class="label lightblue">Tagd</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data e</td>
+			            <td>More Data ee</td>
+			            <td>No</td>
+			            <td>a_value,c_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>Yes</td>
+			            <td>a_value,b_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagc</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data b</td>
+			            <td>More Data bb</td>
+			            <td>No</td>
+			            <td>d_value,aa_value</td>
+			            <td><span class="label lightblue">Taga</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data c</td>
+			            <td>More Data cc</td>
+			            <td>Yes</td>
+			            <td>a_value,c_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data d</td>
+			            <td>More Data dd</td>
+			            <td>No</td>
+			            <td>a_value,bb_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data e</td>
+			            <td>More Data ee</td>
+			            <td>Yes</td>
+			            <td>c_value,e_value</td>
+			            <td><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>No</td>
+			            <td>a_value,e_value</td>
+			            <td><span class="label lightblue">Taga</span></td>
+			          </tr>
+		        	</tbody>
+		      </table>
+	      	</div>
+	      	
+		</div>
+    </div>
+  </body>
+</html>

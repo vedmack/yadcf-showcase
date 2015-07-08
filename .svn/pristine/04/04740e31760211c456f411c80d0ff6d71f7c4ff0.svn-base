@@ -1,0 +1,111 @@
+.container_wrapper h1 {
+	text-align: center;
+}
+
+.container {
+	width: 90%;
+	margin: 50px auto;
+}
+
+#header{
+	text-align: center;
+}
+
+#header span{
+	display: inline-block;
+}
+
+#header span:first-child{
+	border-right: 1px solid;
+	padding-right: 10px;
+	margin-right: 10px;
+}
+
+.index_panel {
+	width: 90%;
+	margin: 50px auto;
+	text-align: center;
+}
+
+#git_buttons{
+	text-align: center;
+	margin-top: 20px;
+}
+
+#local_hrefs{
+	text-align: center;
+}
+
+/******************************************************/
+
+.syntaxhighlighter { 
+ overflow-y: hidden !important; 
+ overflow-x: auto !important; 
+}
+
+.panel{
+	padding-top: 20px;
+	width: 960px;
+  	display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+}
+
+.panel_small{
+	padding: 25x;
+}
+
+.panel_title {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.panel_title_small {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+#features, #all_params{
+	width: 960px;
+	background-color:#eeeeee;
+	font-size: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#features li, #all_params li{
+	min-height: 25px;
+}
+
+#local_hrefs.mb20{
+	margin-bottom: 20px;
+}
+
+#local_hrefs a {
+	margin-left:5px;
+	margin-right:5px;
+}
+
+body {
+	margin-bottom: 620px;
+}
+
+#description{
+	background-color: #eeeeee;
+	text-align: center;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#desc_example {
+	margin-top: -20px;
+}
+
+#desc_p {
+	font-size: 18px;
+	font-weight: 200;
+	text-align: left;
+	line-height: 30px;
+}

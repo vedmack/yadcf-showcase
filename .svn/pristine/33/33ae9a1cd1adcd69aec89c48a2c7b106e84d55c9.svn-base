@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset=utf-8 />
+	<title>Yet Another DataTables Column Filter (Yadcf) Showcase</title>
+	  
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	<link href="resources/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"></link>
+	<link href="resources/css/jquery-ui.1.9.0.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/chosen.min.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/jquery.dataTables.yadcf.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+	
+	<script src="resources/js/jquery-1.8.2.min.js"></script>
+	<script src="resources/js/jquery-ui.1.9.0.js"></script>
+	<script src="resources/js/chosen.jquery.min.js"></script>
+	<script src="resources/js/jquery.dataTables.min.js"></script>
+	<script src="resources/js/jquery.dataTables.yadcf.js"></script>
+	<script src="resources/js/dom_source_chosen_example.js"></script>
+	<script type="text/javascript" src="resources/js/shCore.js"></script>
+	<script type="text/javascript" src="resources/js/shBrushJScript.js"></script>
+	
+	<style>
+		.label {
+			padding: 0px 10px 0px 10px;
+			border: 1px solid #ccc;
+			-moz-border-radius: 1em; /* for mozilla-based browsers */
+			-webkit-border-radius: 1em; /* for webkit-based browsers */
+			border-radius: 1em; /* theoretically for *all* browsers*/
+		}
+		
+		.label.lightblue {
+			background-color: #99CCFF;
+		}
+		
+		#external_filter_container_wrapper {
+		  margin-bottom: 20px;
+		}
+		
+		#external_filter_container {
+		  display: inline-block;
+		}
+			
+	</style>
+	
+
+</head>
+ <body>
+	<a href="https://github.com/vedmack/yadcf" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+	<div id="header">
+		<span class="top-nav">
+	  		<a href="DOM_source.html">DOM source example</a>
+	  	</span>	
+		<span class="top-nav">
+	  		<a href="ajax_source.html">AJAX source example</a>
+	  	</span>
+	  	<span class="top-nav">
+	  		<a href="ajax_mData_source.html">AJAX mData (deep) example</a>
+	  	</span>
+		<span class="top-nav">
+	  		<a href="multiple_tables.html">Multiple tables example</a>
+	  	</span>
+	  	<span>
+	  		<a href="DOM_Ajax_Multiple_1.10.html">DataTables 1.10.0-beta.2 (DOM/Ajax/Multiple) example</a>
+	  	</span>	 	  	
+	</div>
+	<div id="git_buttons">
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=watch&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30" style="vertical-align: middle"></iframe>
+			
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=fork&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30" style="vertical-align: middle"></iframe>
+			
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&type=follow&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="270" height="30" style="vertical-align: middle"></iframe>				
+	 
+	  	<a href="https://twitter.com/danielreznick" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @danielreznick</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			
+	</div>			 	
+   	<div class="container_wrapper">
+   	 	<div id="description">
+	   	 	<h1>Yet Another DataTables Column Filter (Yadcf) 0.6.7</h1>
+	   	 	<h1 id="desc_example">DOM source with chosen example</h1>
+	   	 	<p id="desc_p">This jQuery plug-in allows the user to easily add filter components to table columns, the plug-in works on top of the DataTables jQuery plug-in.</p>
+   	 	</div>
+   	 	<div id="local_hrefs">
+   	 		<a href="#features">Features</a>
+			<a href="#source_code">View source</a>
+			<a href="#all_params">All params</a>
+   	 	</div>
+  		<div class="container">
+	      <div id="external_filter_container_wrapper" class="hide">
+	        <label>External filter for "Yes / No" column :</label>
+	        <div id="external_filter_container"></div>
+	      </div>
+	      <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+	        <thead>
+	          <tr>
+	            <th>Some Data</th>
+	            <th>Numbers</th>
+	            <th>Country</th>
+	            <th>Values</th>
+	            <th>Tags</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr class="odd gradeX">
+	            <td>Some Data 1</td>
+	            <td>1000</td>
+	            <td>United States</td>
+	            <td>a_value,b_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="even gradeC">
+	            <td>Some Data 2</td>
+	            <td>22</td>
+	            <td>United Kingdom</td>
+	            <td>b_value,c_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+	          </tr>
+	          <tr class="odd gradeA">
+	            <td>Some Data 3</td>
+	            <td>33</td>
+	            <td>Russia</td>
+	            <td>a_value</td>
+	            <td><span class="label lightblue">Tag2</span><span class="label lightblue">Tag3</span></td>
+	          </tr>
+	          <tr class="even gradeA">
+	            <td>Some Data 4</td>
+	            <td>44</td>
+	            <td>Aland Islands</td>
+	            <td>b_value</td>
+	            <td><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="odd gradeA">
+	            <td>Some Data 5</td>
+	            <td>55</td>
+	            <td>Chile</td>
+	            <td>a_value,b_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="even gradeA">
+	            <td>Some Data 1</td>
+	            <td>111</td>
+	            <td>China</td>
+	            <td>c_value,d_value</td>
+	            <td><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 2</td>
+	            <td>222</td>
+	            <td>Russia</td>
+	            <td>e_value,f_value</td>
+	            <td><span class="label lightblue">Tag3</span><span class="label lightblue">Tag4</span><span class="label lightblue">Tag5</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 3</td>
+	            <td>33</td>
+	            <td>Ukraine</td>
+	            <td>a_value,bb_value</td>
+	            <td><span class="label lightblue">Tag5</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 4</td>
+	            <td>444</td>
+	            <td>Senegal</td>
+	            <td>a_value,f_value</td>
+	            <td><span class="label lightblue">Tag4</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 5</td>
+	            <td>55</td>
+	            <td>Russia</td>
+	            <td>a_value,c_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 1</td>
+	            <td>300</td>
+	            <td>Russia</td>
+	            <td>a_value,b_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 2</td>
+	            <td>242</td>
+	            <td>Ukraine</td>
+	            <td>d_value,aa_value</td>
+	            <td><span class="label lightblue">Tag1</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 3</td>
+	            <td>703</td>
+	            <td>United Kingdom</td>
+	            <td>a_value,c_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 4</td>
+	            <td>604</td>
+	            <td>United Kingdom</td>
+	            <td>a_value,bb_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 5</td>
+	            <td>550</td>
+	            <td>United States</td>
+	            <td>c_value,e_value</td>
+	            <td><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Some Data 1</td>
+	            <td>901</td>
+	            <td>United States</td>
+	            <td>a_value,e_value</td>
+	            <td><span class="label lightblue">Tag1</span></td>
+	          </tr>
+	        </tbody>
+	      </table>
+		</div>
+    </div>
+	<div class="panel">
+			<div id="features" class="center">
+				<div class="panel_title">Features:</div>	
+				<ul>
+					<li>
+						Support DataTables 1.10.0-beta.2
+					</li>
+					<li>
+						Various filter options:
+						<ul>
+							<li>select input</li>
+							<li>text input</li>
+							<li>autocomplete input - make use of the jQuery UI Autocomplete widget (with some enhancements)</li>
+							<li>date input - make use of the jQuery UI Datepicker widget (with some enhancements)</li>
+							<li>range of numbers</li>
+							<li>range of numbers with slider widget - make use of the jQuery UI Slider widget (with some enhancements)</li>
+							<li>range of dates - make use of the jQuery UI Datepicker widget (with some enhancements)</li>
+						</ul>
+					</li>
+					<li>
+						Parsing various types of columns:
+						<ul>
+							<li>plain text</li>
+							<li>plain text with delimiter</li>
+							<li>one or more HTML elements with the ability to extract text / value / id from each HTML element</li>
+						</ul>
+					</li>
+					<li>
+						Multiple tables support
+					</li>
+					<li>
+						CSS support:
+						<ul>
+							<li>each filter element has got a css style class , so its style can be easily overridden</li>
+						</ul>
+					</li>
+					<li>
+						Reset button for filter:
+						<ul>
+							<li>next to each filter a reset button will appear (this button allows the user to reset the filter)</li>
+						</ul>
+					</li>
+					<li>
+						Filter in use visual notification:
+						<ul>
+							<li>when a certain filter is being used it will be highlighted (the color of highlight can easily be changed with css)</li>
+						</ul>
+					</li>
+					<li>
+						Miscellaneous:
+						<ul>
+							<li>integration with the Chosen plugin</li>
+							<li>predefined data source for filter (array of strings)</li>
+							<li>mData support (including deeply nested objects)</li>
+							<li>ability to place the filter in an external html element (for example: inside a div element)</li>
+							<li>ability to control matching mode of the filter (Possible values: contains / exact / startsWith)</li>
+							<li>change the filter's default label (Select value, etc)</li>
+							<li>change the filter's reset button text (x, clear etc)</li>
+							<li>define how the values in the filter will be sorted</li>
+							<li>define the order in which the values in the filter will be sorted</li>
+							<li>support all major browser (including IE8)</li>
+							<li>define in which date format the date will be parsed and displayed in datepicker widget</li>
+							<li>support aoColumns { "bVisible": false }</li>
+							<li>support for case sensitive filtering</li>
+						</ul>
+					</li>
+					<li>
+						External API functions:
+						<ul>
+							<li>exFilterColumn: Allows to trigger filter externally/programmatically (currently support only filter_type : "select") , perfect for showing table after its being filtered (onload)</li>
+						</ul>
+					</li>
+					<li>
+						Notable datatables API support
+						<ul>
+							<li>bStateSave / bDeferRender</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>		
+		<div class="panel">
+			<div id="source_code">
+				<div class="panel_title">Usage(on this page example):</div>
+					<pre class="brush: js">
+						$(document).ready(function () {
+						    'use strict';
+						
+						    oTable = $('#example').dataTable({
+						        "bJQueryUI": true,
+						        "bStateSave": true
+						    }).yadcf([{
+						        column_number: 0,
+						        select_type: 'chosen'
+						    }, {
+						        column_number: 1,
+						        filter_type: "range_number_slider"
+						    }, {
+						        column_number: 2,
+						        select_type: 'chosen',
+						        select_type_options: {
+						            no_results_text: 'Can\'t find ->',
+						            search_contains: true
+						        }
+						    }, {
+						        column_number: 3,
+						        filter_type: "auto_complete",
+						        text_data_delimiter: ","
+						    }, {
+						        column_number: 4,
+						        select_type: 'chosen',
+						        select_type_options: {
+						            disable_search: true
+						        },
+						        column_data_type: "html",
+						        html_data_type: "text",
+						        filter_default_label: "Select tag"
+						    }]);
+						
+						    SyntaxHighlighter.all();
+						});
+					</pre>
+			</div>
+		</div>
+		<div class="panel">
+			<div id="all_params" class="center">
+				<span class="panel_title">All available parameters</span>
+				<span class="panel_title_small">(detailed documentation inside jquery.dataTables.yadcf.js):</span>
+				<ul>
+					<li>column_number</li>
+					<li>filter_type</li>
+					<li>data</li>
+					<li>column_data_type</li>
+					<li>text_data_delimiter</li>
+					<li>html_data_type</li>
+					<li>filter_container_id</li>
+					<li>filter_default_label</li>
+					<li>filter_reset_button_text</li>
+					<li>enable_auto_complete</li>
+					<li>sort_as</li>
+					<li>sort_order</li>
+					<li>date_format</li>
+					<li>ignore_char</li>
+					<li>filter_match_mode</li>
+					<li>select_type</li>
+					<li>select_type_options</li>
+				</ul>
+			</div>
+		</div>
+  </body>
+</html>

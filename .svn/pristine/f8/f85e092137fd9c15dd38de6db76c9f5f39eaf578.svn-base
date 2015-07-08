@@ -1,0 +1,33 @@
+/*global $, SyntaxHighlighter*/
+
+var oTable;
+
+
+$(document).ready(function () {
+	'use strict';
+
+	oTable = $('.entrys_table').dataTable({
+		"processing": true,
+		"serverSide": true,
+        "ajax": 'entrys_table_server_side_source'
+    }).yadcf([
+		{
+	  		  column_number: 0
+  		},
+  		{
+  		  column_number: 1
+  		},
+		{
+		  column_number: 2,
+		  filter_type: "auto_complete"
+		},
+		{
+		  column_number: 3,
+		  filter_delay: 1500,
+		  filter_type: "text"
+		}
+		]);
+
+	SyntaxHighlighter.all();
+
+});

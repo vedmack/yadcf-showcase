@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>EntrysTableSource</servlet-name>
+		<servlet-class>dr.yadcf.servlets.EntrysTableSource</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EntrysTableSource</servlet-name>
+		<url-pattern>/entrys_table_source</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EntrysTableServerSideSource</servlet-name>
+		<servlet-class>dr.yadcf.servlets.EntrysTableServerSideSource</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EntrysTableServerSideSource</servlet-name>
+		<url-pattern>/entrys_table_server_side_source</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Select2ExampleQuery</servlet-name>
+		<servlet-class>dr.yadcf.servlets.Select2ExampleQuery</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Select2ExampleQuery</servlet-name>
+		<url-pattern>/select2_example_query</url-pattern>
+	</servlet-mapping>
+		
+	
+</web-app>

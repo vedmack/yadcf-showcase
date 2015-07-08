@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset=utf-8 />
+	<title>Yet Another DataTables Column Filter (Yadcf) Showcase</title>
+	  
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	<link href="resources/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"></link>
+	<link href="resources/css/jquery-ui.1.9.0.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/jquery.dataTables.yadcf.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+	
+	<script src="resources/js/jquery-1.8.2.min.js"></script>
+	<script src="resources/js/jquery-ui.1.9.0.js"></script>
+	<script src="resources/js/jquery.dataTables.full.js"></script>
+	<script src="resources/js/jquery.dataTables.yadcf.js"></script>
+	<script src="resources/js/multiple_tables_example.js"></script>
+	<script type="text/javascript" src="resources/js/shCore.js"></script>
+	<script type="text/javascript" src="resources/js/shBrushJScript.js"></script>
+	
+	<style>
+		.label {
+			padding: 0px 10px 0px 10px;
+			border: 1px solid #ccc;
+			-moz-border-radius: 1em; /* for mozilla-based browsers */
+			-webkit-border-radius: 1em; /* for webkit-based browsers */
+			border-radius: 1em; /* theoretically for *all* browsers*/
+		}
+		
+		.label.lightblue {
+			background-color: #99CCFF;
+		}
+		
+		#external_filter_container_wrapper {
+		  margin-bottom: 20px;
+		}
+		
+		#external_filter_container {
+		  display: inline-block;
+		}
+			
+	</style>
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-39379495-2', 'yadcf-showcase.appspot.com');
+	  ga('send', 'pageview');
+	
+	</script>
+</head>
+ <body>
+	<a href="https://github.com/vedmack/yadcf" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+	<div id="header">
+		<span>
+	  		<a href="DOM_source.html">DOM source example</a>
+	  	</span>
+		<span>
+	  		<a href="DOM_source_chosen.html">DOM source with chosen example</a>
+	  	</span>	  	
+		<span>
+	  		<a href="ajax_source.html">AJAX source example</a>
+	  	</span>
+	  	<span>
+	  		<a href="ajax_mData_source.html">AJAX mData (deep) example</a>
+	  	</span>	  	
+	</div>
+	<div id="git_buttons">
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=watch&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30" style="vertical-align: middle"></iframe>
+			
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&repo=yadcf&type=fork&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30" style="vertical-align: middle"></iframe>
+			
+		<iframe src="http://ghbtns.com/github-btn.html?user=vedmack&type=follow&count=true&size=large"
+			allowtransparency="true" frameborder="0" scrolling="0" width="270" height="30" style="vertical-align: middle"></iframe>
+				
+	  	<a href="https://twitter.com/danielreznick" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @danielreznick</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+								
+	</div>			 	
+   	<div class="container_wrapper">
+ 	 	 <div id="description">
+	   	 	<h1>Yet Another DataTables Column Filter (Yadcf) 0.6.3</h1>
+	   	 	<h1 id="desc_example">Multiple tables example</h1>
+	   	 	<p id="desc_p">This jQuery plug-in allows the user to easily add filter components to table columns, the plug-in works on top of the DataTables jQuery plug-in.</p>
+   	 	</div>
+   	 	
+   	 	<div id="local_hrefs">
+   	 		<a href="#features">Features</a>
+			<a href="#source_code">View source</a>
+			<a href="#all_params">All params</a>
+   	 	</div>
+  		<div id="container">
+	      <div id="external_filter_container_wrapper">
+	        <label>External filter for "Numbers" column :</label>
+	        <div id="external_filter_container"></div>
+	      </div>
+	      <div id="table_1">
+	      	<table cellpadding="0" cellspacing="0" border="0" class="display" id="example1">
+		        <thead>
+		          <tr>
+		            <th>Some Data</th>
+		            <th>Numbers</th>
+		            <th>Yes / No</th>
+		            <th>Values</th>
+		            <th>Tags</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr class="odd gradeX">
+		            <td>Some Data 1</td>
+		            <td>11</td>
+		            <td>Yes</td>
+		            <td>g_value,b_value</td>
+		            <td><span class="label lightblue">Tag6</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="even gradeC">
+		            <td>Some Data 2</td>
+		            <td>22</td>
+		            <td>No</td>
+		            <td>b_value,c_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+		          </tr>
+		          <tr class="odd gradeA">
+		            <td>Some Data 3</td>
+		            <td>33</td>
+		            <td>Yes</td>
+		            <td>a_value</td>
+		            <td><span class="label lightblue">Tag2</span><span class="label lightblue">Tag3</span></td>
+		          </tr>
+		          <tr class="even gradeA">
+		            <td>Some Data 4</td>
+		            <td>44</td>
+		            <td>No</td>
+		            <td>b_value</td>
+		            <td><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="odd gradeA">
+		            <td>Some Data 5</td>
+		            <td>55</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="even gradeA">
+		            <td>Some Data 1</td>
+		            <td>11</td>
+		            <td>No</td>
+		            <td>c_value,d_value</td>
+		            <td><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 2</td>
+		            <td>22</td>
+		            <td>Yes</td>
+		            <td>e_value,f_value</td>
+		            <td><span class="label lightblue">Tag3</span><span class="label lightblue">Tag4</span><span class="label lightblue">Tag5</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 3</td>
+		            <td>33</td>
+		            <td>No</td>
+		            <td>a_value,bb_value</td>
+		            <td><span class="label lightblue">Tag5</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 4</td>
+		            <td>44</td>
+		            <td>Yes</td>
+		            <td>a_value,f_value</td>
+		            <td><span class="label lightblue">Tag4</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 5</td>
+		            <td>55</td>
+		            <td>No</td>
+		            <td>a_value,c_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 1</td>
+		            <td>11</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 2</td>
+		            <td>22</td>
+		            <td>No</td>
+		            <td>d_value,aa_value</td>
+		            <td><span class="label lightblue">Tag1</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 3</td>
+		            <td>33</td>
+		            <td>Yes</td>
+		            <td>a_value,c_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 4</td>
+		            <td>44</td>
+		            <td>No</td>
+		            <td>a_value,bb_value</td>
+		            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 5</td>
+		            <td>55</td>
+		            <td>Yes</td>
+		            <td>c_value,e_value</td>
+		            <td><span class="label lightblue">Tag2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>Some Data 1</td>
+		            <td>11</td>
+		            <td>No</td>
+		            <td>a_value,e_value</td>
+		            <td><span class="label lightblue">Tag1</span></td>
+		          </tr>
+		        </tbody>
+		      </table>
+	      </div>
+	      <br><br>
+	      <div id="table_2">
+	      	<table cellpadding="0" cellspacing="0" border="0" class="display second_third" id="example2">
+		        <thead>
+		          <tr>
+		            <th>Numbers</th>
+		            <th>Yes / No</th>
+		            <th>Values</th>
+		            <th>Labels</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr class="odd gradeX">
+		            <td>1,000</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="even gradeC">
+		            <td>2,000</td>
+		            <td>No</td>
+		            <td>b_value,c_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label3</span></td>
+		          </tr>
+		          <tr class="odd gradeA">
+		            <td>3,000</td>
+		            <td>Yes</td>
+		            <td>a_value</td>
+		            <td><span class="label lightblue">Label2</span><span class="label lightblue">Label3</span></td>
+		          </tr>
+		          <tr class="even gradeA">
+		            <td>4,000</td>
+		            <td>No</td>
+		            <td>b_value</td>
+		            <td><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="odd gradeA">
+		            <td>5,000</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="even gradeA">
+		            <td>1,000</td>
+		            <td>No</td>
+		            <td>c_value,d_value</td>
+		            <td><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>2,000</td>
+		            <td>Yes</td>
+		            <td>e_value,f_value</td>
+		            <td><span class="label lightblue">Label3</span><span class="label lightblue">Label4</span><span class="label lightblue">Label5</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>3,000</td>
+		            <td>No</td>
+		            <td>a_value,bb_value</td>
+		            <td><span class="label lightblue">Label5</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>4,000</td>
+		            <td>Yes</td>
+		            <td>a_value,f_value</td>
+		            <td><span class="label lightblue">Label4</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>5,000</td>
+		            <td>No</td>
+		            <td>a_value,c_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>1,000</td>
+		            <td>Yes</td>
+		            <td>a_value,b_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label3</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>2,000</td>
+		            <td>No</td>
+		            <td>d_value,aa_value</td>
+		            <td><span class="label lightblue">Label1</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>3,000</td>
+		            <td>Yes</td>
+		            <td>a_value,c_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>4,000</td>
+		            <td>No</td>
+		            <td>a_value,bb_value</td>
+		            <td><span class="label lightblue">Label1</span><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>5,000</td>
+		            <td>Yes</td>
+		            <td>c_value,e_value</td>
+		            <td><span class="label lightblue">Label2</span></td>
+		          </tr>
+		          <tr class="gradeA">
+		            <td>1,000</td>
+		            <td>No</td>
+		            <td>a_value,e_value</td>
+		            <td><span class="label lightblue">Label1</span></td>
+		          </tr>
+		        </tbody>
+		      </table>
+	      	</div>
+			<br><br>
+	      	<div id="table_3">
+	      		<table cellpadding="0" cellspacing="0" border="0" class="display second_third" id="example3">
+			        <thead>
+			          <tr>
+			            <th>Some Data</th>
+			            <th>More Data</th>
+			            <th>Values</th>
+			            <th>Tags</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr class="odd gradeX">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>a_value,b_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="even gradeC">
+			            <td>Some Data b</td>
+			            <td>More Data bb</td>
+			            <td>b_value,c_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagc</span></td>
+			          </tr>
+			          <tr class="odd gradeA">
+			            <td>Some Data c</td>
+			            <td>More Data cc</td>
+			            <td>a_value</td>
+			            <td><span class="label lightblue">Tagb</span><span class="label lightblue">Tagc</span></td>
+			          </tr>
+			          <tr class="even gradeA">
+			            <td>Some Data d</td>
+			            <td>More Data dd</td>
+			            <td>b_value</td>
+			            <td><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="odd gradeA">
+			            <td>Some Data e</td>
+			            <td>More Data ee</td>
+			            <td>a_value,b_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="even gradeA">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>c_value,d_value</td>
+			            <td><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data b</td>
+			            <td>More Data bb</td>
+			            <td>e_value,f_value</td>
+			            <td><span class="label lightblue">Tagc</span><span class="label lightblue">Tagd</span><span class="label lightblue">Tage</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data c</td>
+			            <td>More Data cc</td>
+			            <td>a_value,bb_value</td>
+			            <td><span class="label lightblue">Tage</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data d</td>
+			            <td>More Data dd</td>
+			            <td>a_value,f_value</td>
+			            <td><span class="label lightblue">Tagd</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data e</td>
+			            <td>More Data ee</td>
+			            <td>a_value,c_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>a_value,b_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagc</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data b</td>
+			            <td>More Data bb</td>
+			            <td>d_value,aa_value</td>
+			            <td><span class="label lightblue">Taga</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data c</td>
+			            <td>More Data cc</td>
+			            <td>a_value,c_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data d</td>
+			            <td>More Data dd</td>
+			            <td>a_value,bb_value</td>
+			            <td><span class="label lightblue">Taga</span><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data e</td>
+			            <td>More Data ee</td>
+			            <td>c_value,e_value</td>
+			            <td><span class="label lightblue">Tagb</span></td>
+			          </tr>
+			          <tr class="gradeA">
+			            <td>Some Data a</td>
+			            <td>More Data aa</td>
+			            <td>a_value,e_value</td>
+			            <td><span class="label lightblue">Taga</span></td>
+			          </tr>
+		        	</tbody>
+		      </table>
+	      	</div>
+	      	
+		</div>
+    </div>
+	<div class="panel">
+		<div id="features" class="center">
+			<div class="panel_title">Features:</div>	
+			<ul>
+				<li>
+					Various filter options:
+					<ul>
+						<li>select input</li>
+						<li>text input</li>
+						<li>autocomplete input - make use of the jQuery UI Autocomplete widget (with some enhancements)</li>
+						<li>date input - make use of the jQuery UI Datepicker widget (with some enhancements)</li>
+						<li>range of numbers</li>
+						<li>range of numbers with slider widget - make use of the jQuery UI Slider widget (with some enhancements)</li>
+						<li>range of dates - make use of the jQuery UI Datepicker widget (with some enhancements)</li>
+					</ul>
+				</li>
+				<li>
+					Parsing various types of columns:
+					<ul>
+						<li>plain text</li>
+						<li>plain text with delimiter</li>
+						<li>one or more HTML elements with the ability to extract text / value / id from each HTML element</li>
+					</ul>
+				</li>
+				<li>
+					Multiple tables support
+				</li>
+				<li>
+					CSS support:
+					<ul>
+						<li>each filter element has got a css style class , so its style can be easily overridden</li>
+					</ul>
+				</li>
+				<li>
+					Reset button for filter:
+					<ul>
+						<li>next to each filter a reset button will appear (this button allows the user to reset the filter)</li>
+					</ul>
+				</li>
+				<li>
+					Filter in use visual notification:
+					<ul>
+						<li>when a certain filter is being used it will be highlighted (the color of highlight can easily be changed with css)</li>
+					</ul>
+				</li>
+				<li>
+					Miscellaneous:
+					<ul>
+						<li>integration with the Chosen plugin</li>
+						<li>predefined data source for filter (array of strings)</li>
+						<li>mData support (including deeply nested objects)</li>
+						<li>ability to place the filter in an external html element (for example: inside a div element)</li>
+						<li>ability to control matching mode of the filter (Possible values: contains / exact / startsWith)</li>
+						<li>change the filter's default label (Select value, etc)</li>
+						<li>change the filter's reset button text (x, clear etc)</li>
+						<li>define how the values in the filter will be sorted</li>
+						<li>define the order in which the values in the filter will be sorted</li>
+						<li>support all major browser (including IE8)</li>
+						<li>define in which date format the date will be parsed and displayed in datepicker widget</li>
+						<li>support aoColumns { "bVisible": false }</li>
+						<li>support for case sensitive filtering</li>
+					</ul>
+				</li>
+				<li>
+					External API functions:
+					<ul>
+						<li>exFilterColumn: Allows to trigger filter externally/programmatically (currently support only filter_type : "select") , perfect for showing table after its being filtered (onload)</li>
+					</ul>
+				</li>
+				<li>
+					Notable datatables API support
+					<ul>
+						<li>bStateSave / bDeferRender</li>
+					</ul>
+				</li>				
+			</ul>
+		</div>
+	</div>		
+	<div class="panel">
+		<div id="source_code">
+			<div class="panel_title">Usage(on this page example):</div>
+				<pre class="brush: js">
+					$(document).ready(function () {
+						
+						var firstTable = $('#example1').dataTable({
+							"bJQueryUI": true
+						}).yadcf([{
+							column_number: 0
+						}, {
+							column_number: 1,
+							filter_type: "range_number",
+							filter_container_id: "external_filter_container"
+						}, {
+							column_number: 2,
+							data: ["Yes", "No"],
+							filter_default_label: "Select Yes/No"
+						}, {
+							column_number: 3,
+							text_data_delimiter: ",",
+							enable_auto_complete: true
+						}, {
+							column_number: 4,
+							column_data_type: "html",
+							html_data_type: "text",
+							filter_default_label: "Select tag"
+						}]);
+
+						yadcf.exFilterColumn(firstTable, 0, "Some Data 3");
+
+						$('#example2').dataTable({
+							"bJQueryUI": true
+						}).yadcf([{
+							column_number: 0,
+							filter_type: "range_number_slider",
+							ignore_char: ","
+						}, {
+							column_number: 2,
+							text_data_delimiter: ",",
+							enable_auto_complete: true,
+							filter_default_label: "Enter a value"
+						}, {
+							column_number: 3,
+							column_data_type: "html",
+							html_data_type: "text",
+							filter_default_label: "Choose label"
+						}]);
+
+
+						$('#example3').dataTable({
+							"bJQueryUI": true
+						}).yadcf([{
+							column_number: 0
+						}, {
+							column_number: 1,
+							filter_default_label: "Pick some"
+						}, {
+							column_number: 2,
+							text_data_delimiter: ",",
+							enable_auto_complete: true
+						}]);
+
+					});
+				</pre>
+		</div>
+	</div>
+	<div class="panel">
+		<div id="all_params" class="center">
+			<span class="panel_title">All available parameters</span>
+			<span class="panel_title_small">(detailed documentation inside jquery.dataTables.yadcf.js):</span>
+			<ul>
+				<li>column_number</li>
+				<li>filter_type</li>
+				<li>data</li>
+				<li>column_data_type</li>
+				<li>text_data_delimiter</li>
+				<li>html_data_type</li>
+				<li>filter_container_id</li>
+				<li>filter_default_label</li>
+				<li>filter_reset_button_text</li>
+				<li>enable_auto_complete</li>
+				<li>sort_as</li>
+				<li>sort_order</li>
+				<li>date_format</li>
+				<li>ignore_char</li>
+				<li>filter_match_mode</li>
+				<li>select_type</li>
+				<li>select_type_options</li>
+			</ul>
+		</div>
+	</div>		
+  </body>
+</html>
