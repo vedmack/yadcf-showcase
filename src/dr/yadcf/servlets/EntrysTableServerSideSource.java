@@ -44,7 +44,7 @@ public class EntrysTableServerSideSource extends HttpServlet {
 		
 		int start = Integer.parseInt(req.getParameter("start"));
 		int length = Integer.parseInt(req.getParameter("length"));
-		String globalSearch = req.getParameter("search");
+		String globalSearch = req.getParameter("search[value]");
 		String sSearch_0 = req.getParameter("columns[0][search][value]");
 		String sSearch_1 = req.getParameter("columns[1][search][value]");
 		String sSearch_2 = req.getParameter("columns[2][search][value]");
@@ -61,11 +61,11 @@ public class EntrysTableServerSideSource extends HttpServlet {
 			rowData = new ArrayList<String>();
 			
 			if(globalSearch != null && !globalSearch.trim().equals("")) {
-				if(!(   entrys.get(i).getEngine().indexOf(globalSearch) != -1 ||
-						entrys.get(i).getBrowser().indexOf(globalSearch)!= -1 ||
-						entrys.get(i).getPlatform().indexOf(globalSearch)!= -1|| 
-						entrys.get(i).getVersion().indexOf(globalSearch)!= -1||
-						entrys.get(i).getGrade().indexOf(globalSearch)!= -1)) {
+				if(!(   entrys.get(i).getEngine().toLowerCase().indexOf(globalSearch.toLowerCase()) != -1 ||
+						entrys.get(i).getBrowser().toLowerCase().indexOf(globalSearch.toLowerCase())!= -1 ||
+						entrys.get(i).getPlatform().toLowerCase().indexOf(globalSearch.toLowerCase())!= -1|| 
+						entrys.get(i).getVersion().toLowerCase().indexOf(globalSearch.toLowerCase())!= -1||
+						entrys.get(i).getGrade().toLowerCase().indexOf(globalSearch.toLowerCase())!= -1)) {
 					continue;
 				}
 			}

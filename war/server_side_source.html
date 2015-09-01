@@ -108,7 +108,7 @@
 	
   	<div class="container_wrapper">
    	 	<div id="description">
-	   	 	<h1>Yet Another DataTables Column Filter (yadcf) 0.8.9.beta.4</h1>
+	   	 	<h1>Yet Another DataTables Column Filter (yadcf) 0.8.9.beta.14</h1>
 	   	 	<h1 id="desc_example">Server side source example</h1>
 	   	 	<p id="desc_p">This jQuery plug-in allows the user to easily add filter components to table columns, the plug-in works on top of the DataTables jQuery plug-in.</p>
    	 		<div id="download_btn_wrapper">
@@ -302,7 +302,7 @@
 						
 						int start = Integer.parseInt(req.getParameter("start"));
 						int length = Integer.parseInt(req.getParameter("length"));
-						String globalSearch = req.getParameter("search");
+						String globalSearch = req.getParameter("search[value]");
 						String sSearch_0 = req.getParameter("columns[0][search][value]");
 						String sSearch_1 = req.getParameter("columns[1][search][value]");
 						String sSearch_2 = req.getParameter("columns[2][search][value]");
