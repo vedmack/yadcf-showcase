@@ -300,7 +300,7 @@ public class EntrysTableServerSideSource extends HttpServlet {
 	
 	public static Date tryParseDate(String text) {
 	  try {
-	    return new SimpleDateFormat("dd/MM/yyyy").parse(text);
+	    return new SimpleDateFormat("MM/dd/yyyy").parse(text);
 	    
 	  } catch (Exception e) {
 	    return null;

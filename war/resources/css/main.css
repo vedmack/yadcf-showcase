@@ -204,7 +204,10 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
-
+#my-other-plugin a {
+    display: block;
+    border: 3px solid white;
+}
 #external_filter_container_wrapper > div {
 	margin-top: 10px;
 }
@@ -235,6 +238,6 @@ body {
 	width: 160px;
 	display: inline-block;
 }
-#externally_triggered_title {
+.externally_triggered_title {
 	background-color: #DDDDDD;
 }

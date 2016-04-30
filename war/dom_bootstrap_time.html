@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <link href="resources/css/datatables-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    
+    <link rel="stylesheet" type="text/css" href="resources/css/jquery.dataTables.css">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+	<link href="resources/css/jquery.dataTables.yadcf.css" rel="stylesheet" type="text/css" />
+
+	
+    <script src="resources/js/datatables-bootstrap.min.js"></script>
+    <script src="resources/js/jquery-1.11.3.min.js"></script>
+    <script src="resources/js/moment.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="resources/js/jquery.dataTables.min.js"></script>
+    <script src="resources/js/jquery.dataTables.yadcf.js"></script>
+	<script src="resources/js/dom_bootstrap_example_time.js"></script>
+	<script type="text/javascript" src="resources/js/shCore.js"></script>
+	<script type="text/javascript" src="resources/js/shBrushJScript.js"></script>
+
+    <style>
+        .label {
+            padding: 0px 10px 0px 10px;
+            border: 1px solid #ccc;
+            -moz-border-radius: 1em; /* for mozilla-based browsers */
+            -webkit-border-radius: 1em; /* for webkit-based browsers */
+            border-radius: 1em; /* theoretically for *all* browsers*/
+        }
+
+        .label.lightblue {
+            background-color: #99CCFF;
+        }
+
+        #external_filter_container_wrapper {
+            margin-bottom: 20px;
+        }
+
+        #external_filter_container {
+            display: inline-block;
+        }
+    </style>
+
+    <meta charset=utf-8/>
+    <title>yadcf - Yet Another DataTables Column Filter</title>
+</head>
+
+<body id="yadcf_example">
+<div id="container">
+    <h1>Yet Another DataTables Column Filter - (yadcf) example</h1>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+        <thead>
+        <tr>
+            <th>Some Data</th>
+            <th>Single Time</th>
+            <th>Yes / No</th>
+            <th>Range Time</th>
+            <th>Tags</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+            <td>Some Data 1</td>
+            <td>08:03</td>
+            <td>Yes</td>
+            <td>08:03</td>
+            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+        </tr>
+        <tr>
+            <td>Some Data 2</td>
+            <td>23:43</td>
+            <td>No</td>
+            <td>23:43</td>
+            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+        </tr>
+        <tr>
+            <td>Some Data 2</td>
+            <td>14:13</td>
+            <td>No</td>
+            <td>14:13</td>
+            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+        </tr>		
+			<tr>
+            <td>Some Data 2</td>
+            <td>06:03</td>
+            <td>No</td>
+            <td>06:03</td>
+            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+        </tr>
+		        <tr>
+            <td>Some Data 2</td>
+            <td>19:04</td>
+            <td>No</td>
+            <td>19:04</td>
+            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+        </tr>
+        </tbody>
+    </table>
+	<div class="panel">
+			<div id="source_code">
+				<div class="panel_title">Usage(on this page example):</div>
+					<pre class="brush: js">
+						$(document).ready(function () {
+						    'use strict';
+						    
+						    //----------------------------------------------
+					    	//note that this is the old yadcf API for init the filters 
+					    	//new init function should be used when working with new Datatable (capital "D" API)
+					    	//for new init function see: http://yadcf-showcase.appspot.com/DOM_Ajax_Multiple_1.10.html
+					    	//----------------------------------------------
+					    
+							$('#example').dataTable().yadcf([
+								{
+									column_number: 1,
+									filter_type: "date",
+									datepicker_type: 'bootstrap-datetimepicker'
+									date_format: 'HH:mm'
+								},
+								{
+									column_number: 3,
+									filter_type: "range_date",
+									datepicker_type: 'bootstrap-datetimepicker'
+									date_format: 'HH:mm'
+								}
+							]);
+						});
+					</pre>
+			</div>
+		</div>
+</div>
+</body>
+</html>

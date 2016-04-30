@@ -4,27 +4,20 @@
 
 	<meta charset=utf-8 />
 	<title>Yet Another DataTables Column Filter (yadcf) Showcase</title>
-
-	<link href="resources/css/jquery.dataTables.10.min.css" rel="stylesheet" type="text/css"></link>
-	<link href="resources/css/dataTables.colVis.css" rel="stylesheet" type="text/css"></link>
-	<link href="resources/css/dataTables.jqueryui.css" rel="stylesheet" type="text/css"></link>
-	<link href="resources/css/dataTables.responsive.css" rel="stylesheet" type="text/css" />
+	  
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	<link href="resources/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"></link>
 	<link href="resources/css/jquery-ui.1.9.0.css" rel="stylesheet" type="text/css" />
-	<link href="resources/css/select2.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/jquery.dataTables.yadcf.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/shCore.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-		
+	
 	<script src="resources/js/jquery-1.8.2.min.js"></script>
 	<script src="resources/js/jquery-ui.1.9.0.js"></script>
-	<script src="resources/js/select2.js"></script>
-	<script src="resources/js/jquery.dataTables.10.min.js"></script>
-	<script src="resources/js/dataTables.responsive.js"></script>
-	<script src="resources/js/dataTables.jqueryui.js"></script>
-	<script src="resources/js/dataTables.colVis.js"></script>
+	<script src="resources/js/jquery.dataTables.min.js"></script>
 	<script src="resources/js/jquery.dataTables.yadcf.js"></script>
-	<script src="resources/js/cumulative_filtering.js"></script>
+	<script src="resources/js/dom_source_example.js"></script>
 	<script type="text/javascript" src="resources/js/shCore.js"></script>
 	<script type="text/javascript" src="resources/js/shBrushJScript.js"></script>
 	
@@ -58,9 +51,6 @@
 	<div id="header">
 		<div>
 			<span class="top-nav">
-		  		<a href="DOM_source.html">DOM source</a>
-		  	</span>	
-			<span class="top-nav">
 		  		<a href="DOM_source_chosen.html">DOM source with chosen</a>
 		  	</span>
 			<span class="top-nav">
@@ -68,9 +58,9 @@
 		  	</span>
 			<span>
 		  		<a href="dom_multi_columns_tables_1.10.html">DOM source multiple columns/tables</a>
-		  	</span>	  	
+		  	</span>
 		</div>
-		<div>
+		<div>  			
 			<span class="top-nav">
 		  		<a href="ajax_source.html">AJAX source</a>
 		  	</span>
@@ -83,13 +73,13 @@
 			<span class="top-nav">
 		  		<a href="server_side_source.html">Server-side 1.10</a>
 		  	</span>
-			<span class="top-nav">
+		  	<span class="top-nav">
+		  		<a href="DOM_Ajax_Multiple_1.10.html">DOM / Ajax / Multiple 1.10</a>
+		  	</span>
+		  	<span>
 		  		<a href="dom_source_externally_triggered.html">Externally triggered filters</a>
 		  	</span>	
-			<span>
-		  		<a href="dom_source_externally_triggered.html">Externally triggered filters</a>
-		  	</span>		  	
-		  </div>
+		</div>	  	
 	</div>
 	<div id="git_buttons">
 		<div class="like-star-want-fork-also-follow">
@@ -108,21 +98,20 @@
 	 
 	  	<a href="https://twitter.com/danielreznick" class="twitter-follow-button" data-show-count="false" >Follow @danielreznick</a>
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
 					
 		<a href="https://twitter.com/share" class="twitter-share-button" data-via="danielreznick" data-count="none">Tweet</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-					
-	</div>		
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>		
+	</div>
 	
 	<div id="my-other-plugin">
-		<a href="http://feedback-me.appspot.com/">Check out my other jQuery plug-in: Feedback Me</a><a href="http://vedmack.github.io/angular-colorpicker/">Check out my AngularJS Directive: Color Picker</a>
+		<a href="http://feedback-me.appspot.com/">Check out my other jQuery plug-in: Feedback Me</a>
 	</div>
 
+	
    	<div class="container_wrapper">
    	 	<div id="description">
-	   	 	<h1>Yet Another DataTables Column Filter (yadcf) 0.9.0.beta.6</h1>
-	   	 	<h1 id="desc_example">Cumulative filtering example</h1>
+	   	 	<h1>Yet Another DataTables Column Filter (yadcf) 0.8.9.beta.11</h1>
+	   	 	<h1 id="desc_example">DOM source example</h1>
 	   	 	<p id="desc_p">This jQuery plug-in allows the user to easily add filter components to table columns, the plug-in works on top of the DataTables jQuery plug-in.</p>
    	 		<div id="download_btn_wrapper">
 				<a href="https://github.com/vedmack/yadcf/releases" class="some_btn download_btn">
@@ -131,152 +120,150 @@
 				<a href="https://github.com/vedmack/yadcf/blob/master/ChangeLog.markdown" class="some_btn changelog_btn">
 					Change log
 				</a>
-			</div>		   	 	
+			</div>	
    	 	</div>
    	 	<div id="local_hrefs" class='hide'>
    	 		<a href="#features">Features</a>
 			<a href="#source_code">View source</a>
 			<a href="#all_params">All params</a>
    	 	</div>
+	 	<span id="reset-all-table-filter">
+   	 		<input type="button" onclick="yadcf.exResetAllFilters(oTable);" value="Reset all column filters" class="some_btn general_btn">
+   	 	</span>
   		<div class="container">
-	      <div id="external_filter_container_wrapper" class="hide">
-	        <label>yadcf.initMultipleTables:</label>
-	        <span id="multi-table-filter"></span>
+	      <div id="external_filter_container_wrapper" class="">
+	        <label>External filter for Dates column :</label>
+	        <div id="external_filter_container"></div>
 	      </div>
-		  <div id="table_1">
-			  <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
-				<thead>
-				  <tr>
-					<th>Some Data</th>
-					<th>Numbers</th>
-					<th>Dates</th>
-					<th>Values</th>
-					<th>Tags</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr class="odd gradeX">
-					<td>Some Data 1</td>
-					<td>1000</td>
-					<td>01/24/2014</td>
-					<td>a_value,b_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="even gradeC">
-					<td>Some Data 2</td>
-					<td>22</td>
-					<td>02/20/2014</td>
-					<td>b_value,c_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
-				  </tr>
-				  <tr class="odd gradeA">
-					<td>Some Data 3</td>
-					<td>33</td>
-					<td>02/26/2014</td>
-					<td>a_value</td>
-					<td><span class="label lightblue">Tag2</span><span class="label lightblue">Tag3</span></td>
-				  </tr>
-				  <tr class="even gradeA">
-					<td>Some Data 4</td>
-					<td>44</td>
-					<td>02/11/2014</td>
-					<td>b_value</td>
-					<td><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="odd gradeA">
-					<td>Some Data 5</td>
-					<td>55</td>
-					<td>02/29/2014</td>
-					<td>a_value,b_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="even gradeA">
-					<td>Some Data 1</td>
-					<td>111</td>
-					<td>11/24/2014</td>
-					<td>c_value,d_value</td>
-					<td><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 2</td>
-					<td>222</td>
-					<td>02/03/2014</td>
-					<td>e_value,f_value</td>
-					<td><span class="label lightblue">Tag3</span><span class="label lightblue">Tag4</span><span class="label lightblue">Tag5</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 3</td>
-					<td>33</td>
-					<td>02/03/2014</td>
-					<td>a_value,bb_value</td>
-					<td><span class="label lightblue">Tag5</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 4</td>
-					<td>444</td>
-					<td>03/24/2014</td>
-					<td>a_value,f_value</td>
-					<td><span class="label lightblue">Tag4</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 5</td>
-					<td>55</td>
-					<td>03/22/2014</td>
-					<td>a_value,c_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 1</td>
-					<td>300</td>
-					<td>02/20/2014</td>
-					<td>a_value,b_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 2</td>
-					<td>242</td>
-					<td>02/04/2014</td>
-					<td>d_value,aa_value</td>
-					<td><span class="label lightblue">Tag1</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 3</td>
-					<td>703</td>
-					<td>02/05/2014</td>
-					<td>a_value,c_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 4</td>
-					<td>604</td>
-					<td>02/25/2014</td>
-					<td>a_value,bb_value</td>
-					<td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 5</td>
-					<td>550</td>
-					<td>02/01/2014</td>
-					<td>c_value,e_value</td>
-					<td><span class="label lightblue">Tag2</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 1</td>
-					<td>901</td>
-					<td>02/02/2014</td>
-					<td>a_value,e_value</td>
-					<td><span class="label lightblue">Tag1</span></td>
-				  </tr>
-				  <tr class="gradeA">
-					<td>Some Data 11</td>
-					<td>911</td>
-					<td>02/22/2014</td>
-					<td>a_value,e_value</td>
-					<td><span class="label lightblue">Tag11</span></td>
-				  </tr>				  
-				</tbody>
-			  </table>
-			</div>
+	      <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+	        <thead>
+	          <tr>
+	          	<th colspan="2">Complex headers</th>
+	          	<th rowspan="2">Dates</th>
+	          	<th colspan="2">are supported too!!!</th>
+	          </tr>
+	          <tr>
+	            <th>Custom</th>
+	            <th>Numbers</th>
+	            <th>Values</th>
+	            <th>Tags</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr class="odd gradeX">
+	            <td>Happy :)</td>
+	            <td>1000</td>
+	            <td>01/24/2014</td>
+	            <td>a_value,b_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="even gradeC">
+	            <td>Joy</td>
+	            <td>22</td>
+	            <td>02/20/2014</td>
+	            <td>b_value,c_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+	          </tr>
+	          <tr class="odd gradeA">
+	            <td>01</td>
+	            <td>33</td>
+	            <td>02/26/2014</td>
+	            <td>a_value</td>
+	            <td><span class="label lightblue">Tag2</span><span class="label lightblue">Tag3</span></td>
+	          </tr>
+	          <tr class="even gradeA">
+	            <td>Sad</td>
+	            <td>44</td>
+	            <td>02/11/2014</td>
+	            <td>b_value</td>
+	            <td><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="odd gradeA">
+	            <td>777</td>
+	            <td>55</td>
+	            <td>02/29/2014</td>
+	            <td>a_value,b_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="even gradeA">
+	            <td>Jan</td>
+	            <td>111</td>
+	            <td>11/24/2014</td>
+	            <td>c_value,d_value</td>
+	            <td><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>:)</td>
+	            <td>222</td>
+	            <td>02/03/2014</td>
+	            <td>e_value,f_value</td>
+	            <td><span class="label lightblue">Tag3</span><span class="label lightblue">Tag4</span><span class="label lightblue">Tag5</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>:(</td>
+	            <td>33</td>
+	            <td>02/03/2014</td>
+	            <td>a_value,bb_value</td>
+	            <td><span class="label lightblue">Tag5</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>:D</td>
+	            <td>444</td>
+	            <td>03/24/2014</td>
+	            <td>a_value,f_value</td>
+	            <td><span class="label lightblue">Tag4</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>:'(</td>
+	            <td>55</td>
+	            <td>03/22/2014</td>
+	            <td>a_value,c_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Never!!!</td>
+	            <td>300</td>
+	            <td>02/20/2014</td>
+	            <td>a_value,b_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag3</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Finally :-]</td>
+	            <td>242</td>
+	            <td>02/04/2014</td>
+	            <td>d_value,aa_value</td>
+	            <td><span class="label lightblue">Tag1</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Why :(</td>
+	            <td>703</td>
+	            <td>02/05/2014</td>
+	            <td>a_value,c_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Arr...</td>
+	            <td>604</td>
+	            <td>02/25/2014</td>
+	            <td>a_value,bb_value</td>
+	            <td><span class="label lightblue">Tag1</span><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>H A P P Y :)</td>
+	            <td>550</td>
+	            <td>02/01/2014</td>
+	            <td>c_value,e_value</td>
+	            <td><span class="label lightblue">Tag2</span></td>
+	          </tr>
+	          <tr class="gradeA">
+	            <td>Bingo</td>
+	            <td>901</td>
+	            <td>02/02/2014</td>
+	            <td>a_value,e_value</td>
+	            <td><span class="label lightblue">Tag1</span></td>
+	          </tr>
+	        </tbody>
+	      </table>
 		</div>
     </div>
 	<div class="panel">
@@ -377,39 +364,97 @@
 			<div id="source_code">
 				<div class="panel_title">Usage(on this page example):</div>
 					<pre class="brush: js">
-					$(document).ready(function () {
-					    'use strict';
-					
-					    var oTable;
-					    oTable = $('#example').DataTable();
-    
-					    yadcf.init(oTable,
-							[
-								{
-									column_number : 0,
-									filter_type: "multi_select",
-									select_type: 'select2'
-								}, 
-								{
-									column_number: 3,
-									filter_type: "auto_complete",
-									text_data_delimiter: ","
-								},
-								{
-									column_number : 4,
-									filter_type: "multi_select",
-									select_type: 'select2',
-									column_data_type: "html",
-									html_data_type: "text",
-									filter_default_label: "Select tag"
-								}
-							],
-							{
-								cumulative_filtering: true
-							}
-						);
+						$(document).ready(function () {
+						    'use strict';
+						    
+						    //----------------------------------------------
+						    //Example on how to define a custom filter function
+					    	//this function is goinf to be passesd to yadcf as custom_func parameter value
+					    	//and going to be tested against each value in the column
+					    	//----------------------------------------------
 					    
-					});
+							function myCustomFilterFunction(filterVal, columnVal) {
+						        var found;
+						        if (columnVal === '') {
+						            return true;
+						        }
+						        switch (filterVal) {
+					            case 'happy':
+					                found = columnVal.search(/:-\]|:\)|Happy|JOY|:D/g);
+					                break;
+					            case 'sad':
+					                found = columnVal.search(/:\(|Sad|:'\(/g);
+					                break;
+					            case 'angry':
+					                found = columnVal.search(/!!!|Arr\.\.\./g);
+					                break;
+					            case 'lucky':
+					                found = columnVal.search(/777|Bingo/g);
+					                break;
+					            case 'january':
+					                found = columnVal.search(/01|Jan/g);
+					                break;
+					            default:
+					                found = 1;
+					                break;
+						        }
+						
+						        if (found !== -1) {
+						            return true;
+						        }
+						        return false;
+						    }
+							
+						    //----------------------------------------------
+					    	//note that this is the old yadcf API for init the filters 
+					    	//new init function should be used when working with new Datatable (capital "D" API)
+					    	//for new init function see: http://yadcf-showcase.appspot.com/DOM_Ajax_Multiple_1.10.html
+					    	//----------------------------------------------
+						    oTable = $('#example').dataTable({
+								"sScrollY": "300px",
+								"iDisplayLength": 25,
+								"bJQueryUI": true,
+								"bStateSave": true
+						    }).yadcf([{
+						        column_number: 0,
+						        filter_type: 'custom_func',
+						        custom_func: myCustomFilterFunction,
+						        data: [{
+						            value: 'happy',
+						            label: 'Happy'
+						        }, {
+						            value: 'sad',
+						            label: 'Sad'
+						        }, {
+						            value: 'angry',
+						            label: 'Angry'
+						        }, {
+						            value: 'lucky',
+						            label: 'Lucky'
+						        }, {
+						            value: 'january',
+						            label: 'January'
+						        }],
+						        filter_default_label: "Custom func filter"
+						    }, {
+						        column_number: 1,
+						        filter_type: "range_number_slider"
+						    }, {
+						        column_number: 2,
+						        filter_type: "range_date",
+						        filter_container_id: "external_filter_container"
+						    }, {
+						        column_number: 3,
+						        filter_type: "auto_complete",
+						        text_data_delimiter: ","
+						    }, {
+						        column_number: 4,
+						        column_data_type: "html",
+						        html_data_type: "text",
+						        filter_default_label: "Select tag"
+						    }]);
+					
+						});
 					</pre>
 			</div>
 		</div>

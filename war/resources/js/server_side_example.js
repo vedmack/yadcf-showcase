@@ -32,7 +32,7 @@ $(document).ready(function () {
 		{
 			column_number: 3,
 			filter_type: "range_date",
-			date_format: "dd/mm/yyyy",
+			date_format: "mm/dd/yyyy",
 			filter_delay: 500
 		},
 		{

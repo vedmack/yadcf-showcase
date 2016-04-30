@@ -9,7 +9,8 @@ $(document).ready(function () {
 
     
     oTable = $('#example').DataTable({
-		stateSave: true
+		//stateSave: true,
+		fixedHeader: true
     });
     
     yadcf.init(oTable, [{
