@@ -1,13 +1,14 @@
 package dr.yadcf.common;
 
 import java.util.List;
+import java.util.Map;
 
 public class TableAaDataServerSide {
-	List<List<String>> aaData;
+	List<Map<String, String>> data;
 	private String draw;
 	private int recordsTotal;
 	private int recordsFiltered;
-	private List<EngineValueLabel> yadcf_data_0;
+	private List<String> yadcf_data_0;
 	private List<String> yadcf_data_1;
 	private List<String> yadcf_data_2;
 	private List<String> yadcf_data_3;
@@ -15,18 +16,18 @@ public class TableAaDataServerSide {
 	
 
 
-	public List<List<String>> getAaData() {
-		return aaData;
+	public List<Map<String, String>> getData() {
+		return data;
 	}
 
-	public void setAaData(List<List<String>> aaData) {
-		this.aaData = aaData;
+	public void setData(List<Map<String, String>> data) {
+		this.data = data;
 	}
 
 
-	public TableAaDataServerSide(List<List<String>> aaData) {
+	public TableAaDataServerSide(List<Map<String, String>> data) {
 		super();
-		this.aaData = aaData;
+		this.data = data;
 	}
 
 	public String getDraw() {
@@ -53,11 +54,11 @@ public class TableAaDataServerSide {
 		this.recordsTotal = recordsTotal;
 	}
 
-	public List<EngineValueLabel> getYadcf_data_0() {
+	public List<String> getYadcf_data_0() {
 		return yadcf_data_0;
 	}
 
-	public void setYadcf_data_0(List<EngineValueLabel> yadcf_data_0) {
+	public void setYadcf_data_0(List<String> yadcf_data_0) {
 		this.yadcf_data_0 = yadcf_data_0;
 	}
 
