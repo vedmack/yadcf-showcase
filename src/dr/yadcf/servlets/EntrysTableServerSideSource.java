@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -45,20 +47,29 @@ public class EntrysTableServerSideSource extends HttpServlet {
 		int start = Integer.parseInt(req.getParameter("start"));
 		int length = Integer.parseInt(req.getParameter("length"));
 		String globalSearch = req.getParameter("search[value]");
-		String sSearch_0 = req.getParameter("columns[0][search][value]");
-		String sSearch_1 = req.getParameter("columns[1][search][value]");
-		String sSearch_2 = req.getParameter("columns[2][search][value]");
-		String sSearch_3 = req.getParameter("columns[3][search][value]");
-		String sSearch_4 = req.getParameter("columns[4][search][value]");
 		
-		TableAaDataServerSide tableAaData = null;
-		List<List<String>> aaData =  new ArrayList<List<String>>();
+		Map<String, Integer> columnsReordered = new HashMap<String, Integer>();
+		
+		columnsReordered.put(req.getParameter("columns[0][data]"), 0);
+		columnsReordered.put(req.getParameter("columns[1][data]"), 1);
+		columnsReordered.put(req.getParameter("columns[2][data]"), 2);
+		columnsReordered.put(req.getParameter("columns[3][data]"), 3);
+		columnsReordered.put(req.getParameter("columns[4][data]"), 4);
+		
+		String sSearch_0 = req.getParameter("columns[" + columnsReordered.get("engine")+ "][search][value]");
+		String sSearch_1 = req.getParameter("columns[" + columnsReordered.get("browser")+ "][search][value]");
+		String sSearch_2 = req.getParameter("columns[" + columnsReordered.get("platform")+ "][search][value]");
+		String sSearch_3 = req.getParameter("columns[" + columnsReordered.get("date")+ "][search][value]");
+		String sSearch_4 = req.getParameter("columns[" + columnsReordered.get("number")+ "][search][value]");
 
-		List<String> rowData = null;
+		TableAaDataServerSide tableAaData = null;
+		List<Map<String, String>> data =  new ArrayList<Map<String, String>>();
+
+		Map<String, String> rowData = null;
 		
-		for (int i=start; (i < entrys.size() && aaData.size() < length); i++) {
+		for (int i=start; (i < entrys.size() && data.size() < length); i++) {
 			
-			rowData = new ArrayList<String>();
+			rowData = new HashMap<String, String>();
 			
 			if(globalSearch != null && !globalSearch.trim().equals("")) {
 				if(!(   entrys.get(i).getEngine().toLowerCase().indexOf(globalSearch.toLowerCase()) != -1 ||
@@ -140,45 +151,49 @@ public class EntrysTableServerSideSource extends HttpServlet {
 					continue;
 				}
 			}
-			rowData.add(entrys.get(i).getEngine());
-			rowData.add(entrys.get(i).getBrowser());
-			rowData.add(entrys.get(i).getPlatform());
-			rowData.add(entrys.get(i).getVersion());
-			rowData.add(entrys.get(i).getGrade());
 			
-			aaData.add(rowData);
+			rowData.put("engine", entrys.get(i).getEngine());
+			rowData.put("browser", entrys.get(i).getBrowser());
+			rowData.put("platform", entrys.get(i).getPlatform());
+			rowData.put("date", entrys.get(i).getVersion());
+			rowData.put("number", entrys.get(i).getGrade());
+			
+			data.add(rowData);
 		}
 		
-		Set <EngineValueLabel> col0Data = new HashSet<EngineValueLabel>();
+		Map<String, ArrayList> colsData = new HashMap<String, ArrayList>();
+		Set <String> col0Data = new HashSet<String>();
 		Set <String> col1Data = new HashSet<String>();
 		Set <String> col2Data = new HashSet<String>();
-//		Set <String> col3Data = new HashSet<String>();
+		Set <String> col3Data = new HashSet<String>();
 		Set <String> col4Data = new HashSet<String>();
+		
+		
 		for (EntryDb entry : entrys) {
-			col0Data.add(new EngineValueLabel(entry.getEngine(), entry.getEngine() + " Eng'"));
+			col0Data.add(entry.getEngine());
 			col1Data.add(entry.getBrowser());
 			col2Data.add(entry.getPlatform());
 		}
-//		col0Data.add("engine");
-//		col1Data.add("browser");
-//		col2Data.add("platform");
-//		col3Data.add("date");
-//		col4Data.add("number");
 		
 		col4Data.add("0");
 		col4Data.add("134");
 		
-
-		tableAaData = new TableAaDataServerSide(aaData);
+		tableAaData = new TableAaDataServerSide(data);
 		tableAaData.setRecordsTotal(entrys.size());
-		tableAaData.setRecordsFiltered(aaData.size());
+		tableAaData.setRecordsFiltered(data.size());
 		tableAaData.setDraw(req.getParameter("draw"));
 		
-		tableAaData.setYadcf_data_0(new ArrayList<EngineValueLabel>(col0Data));
-		tableAaData.setYadcf_data_1(new ArrayList<String>(col1Data));
-		tableAaData.setYadcf_data_2(new ArrayList<String>(col2Data));
-//		tableAaData.setYadcf_data_3(new ArrayList<String>(col3Data));
-		tableAaData.setYadcf_data_4(new ArrayList<String>(col4Data));
+		colsData.put("engine", new ArrayList<String>(col0Data));
+		colsData.put("browser", new ArrayList<String>(col1Data));
+		colsData.put("platform", new ArrayList<String>(col2Data));
+		colsData.put("date", new ArrayList<String>(col3Data));
+		colsData.put("number", new ArrayList<String>(col4Data));
+		
+		tableAaData.setYadcf_data_0(colsData.get(columnsReordered.get("engine")));
+		tableAaData.setYadcf_data_1(colsData.get(columnsReordered.get("browser")));
+		tableAaData.setYadcf_data_2(colsData.get(columnsReordered.get("platform")));
+		tableAaData.setYadcf_data_3(colsData.get(columnsReordered.get("date")));
+		tableAaData.setYadcf_data_4(colsData.get(columnsReordered.get("number")));
 		
 		
 		resp.setContentType("application/json");
@@ -203,7 +218,7 @@ public class EntrysTableServerSideSource extends HttpServlet {
 	public static String generateRandomDate(){
 		GregorianCalendar gc = new GregorianCalendar();
 
-        int year = randBetween(2014, 2015);
+        int year = randBetween(2016, 2017);
 
         gc.set(Calendar.YEAR, year);
 
